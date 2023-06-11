@@ -55,34 +55,36 @@ android {
 dependencies {
 
     // Android
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
     implementation("androidx.activity:activity-compose:1.7.2")
 
     // Compose
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
-
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+
+    // Logging
+    implementation("com.jakewharton.timber:timber:5.0.1")
 
     // Dependency Injection
     implementation("com.google.dagger:hilt-android:2.44.2")
     kapt("com.google.dagger:hilt-compiler:2.44.2")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
-    // Logging
-    implementation("com.jakewharton.timber:timber:5.0.1")
+    // Navigation
+    implementation("androidx.navigation:navigation-compose:2.6.0")
 
     // Networking
-
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
+
+    implementation("com.squareup.okhttp3:okhttp")
+    implementation("com.squareup.okhttp3:logging-interceptor")
 
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
-    implementation("com.squareup.okhttp3:okhttp")
-    implementation("com.squareup.okhttp3:logging-interceptor")
 
     // Deserializer
     implementation("com.squareup.moshi:moshi:1.14.0")
@@ -90,16 +92,28 @@ dependencies {
     kapt("com.squareup.moshi:moshi-kotlin-codegen:1.14.0")
     implementation("com.squareup.moshi:moshi-adapters:1.14.0")
 
+    // Local Storage
+    implementation("androidx.room:room-runtime:2.5.0")
+    kapt( "androidx.room:room-compiler:2.5.0")
+    implementation("androidx.room:room-ktx:2.5.0")
+
+    // Media
+    implementation("com.google.accompanist:accompanist-placeholder-material:0.13.0")
+    implementation("io.coil-kt:coil-compose:2.2.2")
+    implementation("com.airbnb.android:lottie-compose:5.2.0")
+
     // Unit Testing
     testImplementation("junit:junit:4.13.2")
 
     // UI Testing
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
 
     // Debug
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.9.1")
 }
