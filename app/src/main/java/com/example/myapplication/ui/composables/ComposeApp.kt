@@ -1,31 +1,41 @@
 package com.example.myapplication.ui.composables
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.myapplication.ui.MyViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.myapplication.ui.theme.MyApplicationTheme
 
 @Composable
 fun ComposeApp() {
-    val myViewModel = hiltViewModel<MyViewModel>()
-
-    Column(
-        modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+    val navController = rememberNavController()
+    NavHost(
+        navController = navController,
+        startDestination = NavigationRoute.FETCH
     ) {
-        Button(
-            onClick = { myViewModel.doSomething() }
+        composable(NavigationRoute.FETCH) { backStackEntry ->
+            FetchScreen(
+                onUserClick = { username ->
+                    // In order to discard duplicated navigation events, we check the Lifecycle
+                    if (backStackEntry.lifecycle.currentState == Lifecycle.State.RESUMED) {
+                        navController.navigate("${NavigationRoute.SERVER_DRIVEN_UI}/$username")
+                    }
+                }
+            )
+        }
+        composable(
+            route = "${NavigationRoute.SERVER_DRIVEN_UI}/{${NavigationArgument.ID}}",
+            arguments = listOf(
+                navArgument(NavigationArgument.ID) {
+                    type = NavType.StringType
+                }
+            ),
         ) {
-            Text(text = "Make request")
+            ServerDrivenUiScreen()
         }
     }
 }

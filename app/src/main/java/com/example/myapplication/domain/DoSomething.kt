@@ -11,13 +11,13 @@ class DoSomething @Inject constructor(
 
     @CheckResult
     suspend operator fun invoke(): Result<String> = resultOf {
-        val result = myApplicationRepository.doSomething()
+        val someResult = myApplicationRepository.doSomething()
 
-        validateOrThrow(result.isNotEmpty()) {
+        validateOrThrow(someResult.isNotEmpty()) {
             SomeError("Something is empty, this is unexpected, needs to be handled")
         }
 
-        result
+        someResult
     }
 }
 
