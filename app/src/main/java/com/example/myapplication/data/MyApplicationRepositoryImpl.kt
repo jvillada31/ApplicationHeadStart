@@ -8,8 +8,8 @@ class MyApplicationRepositoryImpl @Inject constructor(
     private val myApplicationRemoteDataSource: MyApplicationRemoteDataSource
 ) : MyApplicationRepository {
 
-    override suspend fun doSomething(): String =
-        myApplicationRemoteDataSource.doSomething()
+    override suspend fun doFetch(): String =
+        myApplicationRemoteDataSource.doFetch()
             .onSuccess {
                 Timber.d("Database operation or something like that")
             }

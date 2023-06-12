@@ -10,9 +10,9 @@ class MyApplicationRemoteDataSource @Inject constructor(
     private val myApplicationApi: MyApplicationApi
 ) {
 
-    suspend fun doSomething(): Result<String> = resultOf {
+    suspend fun doFetch(): Result<String> = resultOf {
         val response = withContext(Dispatchers.IO) {
-            myApplicationApi.doSomething()
+            myApplicationApi.doFetch()
         }
 
         val body = response.body()

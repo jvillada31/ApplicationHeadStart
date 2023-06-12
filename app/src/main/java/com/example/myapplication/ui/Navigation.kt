@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.composables
+package com.example.myapplication.ui
 
 object NavigationRoute {
     const val FETCH = "fetch"

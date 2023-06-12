@@ -1,21 +1,21 @@
-package com.example.myapplication.ui.composables
+package com.example.myapplication.ui.serverdriven
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.myapplication.ui.MyViewModel
+import com.example.myapplication.ui.fetch.FetchViewModel
 
 @Composable
-fun ServerDrivenUiScreen() {
-    val myViewModel = hiltViewModel<MyViewModel>()
+fun ServerDrivenScreen() {
+    val fetchViewModel = hiltViewModel<FetchViewModel>()
 
     Column(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
