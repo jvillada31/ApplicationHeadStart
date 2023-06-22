@@ -9,5 +9,5 @@ data class ServerDrivenModel(
 
 @JsonClass(generateAdapter = true)
 data class ContentModel(
-  val title: String
+    val title: String
 )
