@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.domain.DoFetch
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -24,7 +25,7 @@ class FetchViewModel @Inject constructor(
 
     fun doFetch(shouldFail: Boolean) {
         fetchJob?.cancel()
-        fetchJob = viewModelScope.launch {
+        fetchJob = viewModelScope.launch(Dispatchers.IO) {
             doFetch.invoke(shouldFail)
                 .onSuccess { value ->
                     Timber.d("This is a success")

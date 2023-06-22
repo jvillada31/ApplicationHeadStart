@@ -30,9 +30,9 @@ fun ComposeApp() {
             )
         }
         composable(
-            route = "${NavigationRoute.SERVER_DRIVEN_UI}/{${NavigationArgument.ID}}",
+            route = "${NavigationRoute.SERVER_DRIVEN_UI}/{${NavigationArgument.MESSAGE}}",
             arguments = listOf(
-                navArgument(NavigationArgument.ID) {
+                navArgument(NavigationArgument.MESSAGE) {
                     type = NavType.StringType
                 }
             ),

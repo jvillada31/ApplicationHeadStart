@@ -6,5 +6,5 @@ object NavigationRoute {
 }
 
 object NavigationArgument {
-    const val ID = "id"
+    const val MESSAGE = "message"
 }
