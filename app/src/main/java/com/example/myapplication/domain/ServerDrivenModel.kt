@@ -1,13 +1,28 @@
 package com.example.myapplication.domain
 
-import com.squareup.moshi.JsonClass
+enum class Type {
+    Prueba,
+    Prueba2
+}
 
-@JsonClass(generateAdapter = true)
-data class ServerDrivenModel(
-    val content: ContentModel? = null
-)
+sealed interface ServerDrivenModel {
+    val type: Type
+}
 
-@JsonClass(generateAdapter = true)
+data class Type1Model(
+    val action: String,
+    val content: ContentModel?
+) : ServerDrivenModel {
+    override val type: Type = Type.Prueba
+}
+
+data class Type2Model(
+    val aha: String,
+    val tuque: String
+) : ServerDrivenModel {
+    override val type: Type = Type.Prueba2
+}
+
 data class ContentModel(
     val title: String
 )

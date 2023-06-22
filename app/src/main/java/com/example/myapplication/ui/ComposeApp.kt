@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.myapplication.domain.Type1Model
 import com.example.myapplication.ui.fetch.FetchScreen
 import com.example.myapplication.ui.serverdriven.ServerDrivenScreen
 import com.example.myapplication.ui.theme.MyApplicationTheme
@@ -24,7 +25,15 @@ fun ComposeApp() {
                     navController.navigate("${NavigationRoute.SERVER_DRIVEN_UI}/$message")
                 },
                 onClickServerDriven = { serverDrivenModel ->
-                    navController.navigate("${NavigationRoute.SERVER_DRIVEN_UI}/${serverDrivenModel.content?.title}")
+                    when (serverDrivenModel) {
+                        is Type1Model -> {
+                            navController.navigate("${NavigationRoute.SERVER_DRIVEN_UI}/${serverDrivenModel.content?.title}")
+                        }
+
+                        else -> {
+                            TODO("Lazy af")
+                        }
+                    }
                 }
             )
         }

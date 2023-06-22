@@ -1,8 +1,14 @@
 package com.example.myapplication.di
 
 import com.example.myapplication.BuildConfig
+import com.example.myapplication.data.ServerDrivenResponse
 import com.example.myapplication.data.MyApplicationApi
+import com.example.myapplication.data.TypeResponse
+import com.example.myapplication.data.Type1Response
+import com.example.myapplication.data.Type2Response
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.adapters.PolymorphicJsonAdapterFactory
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,6 +27,12 @@ object MyApplicationNetworkModule {
     @Singleton
     @Provides
     fun providesMoshi(): Moshi = Moshi.Builder()
+        .add(
+            PolymorphicJsonAdapterFactory.of(ServerDrivenResponse::class.java, "type")
+                .withSubtype(Type1Response::class.java, TypeResponse.Prueba.name)
+                .withSubtype(Type2Response::class.java, TypeResponse.Prueba2.name)
+        )
+        .add(KotlinJsonAdapterFactory())
         .build()
 
     @Singleton
