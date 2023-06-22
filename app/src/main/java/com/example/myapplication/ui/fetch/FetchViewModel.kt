@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.domain.DoFetch
+import com.example.myapplication.domain.DoServerDrivenFetch
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -15,7 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FetchViewModel @Inject constructor(
-    private val doFetch: DoFetch
+    private val doFetch: DoFetch,
+    private val doServerDrivenFetch: DoServerDrivenFetch
 ) : ViewModel() {
 
     private var fetchJob: Job? = null
@@ -29,12 +31,34 @@ class FetchViewModel @Inject constructor(
             doFetch.invoke(shouldFail)
                 .onSuccess { value ->
                     Timber.d("This is a success")
-                    uiState = uiState.copy(value = value)
+                    uiState = uiState.copy(stringValue = value)
                 }
                 .onFailure { throwable ->
                     Timber.wtf(throwable, "This is a failure")
                     uiState = uiState.copy(offline = true)
                 }
         }
+    }
+
+    fun doServerDrivenFetch(shouldFail: Boolean) {
+        fetchJob?.cancel()
+        fetchJob = viewModelScope.launch(Dispatchers.IO) {
+            doServerDrivenFetch.invoke(shouldFail)
+                .onSuccess { value ->
+                    Timber.d("This is a success")
+                    uiState = uiState.copy(serverDrivenValue = value)
+                }
+                .onFailure { throwable ->
+                    Timber.wtf(throwable, "This is a failure")
+                    uiState = uiState.copy(offline = true)
+                }
+        }
+    }
+
+    fun navigationHandled() {
+        uiState = uiState.copy(
+            stringValue = null,
+            serverDrivenValue = null
+        )
     }
 }

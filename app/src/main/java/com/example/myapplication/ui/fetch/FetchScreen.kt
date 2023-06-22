@@ -6,22 +6,33 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.myapplication.domain.ServerDrivenModel
 import com.example.myapplication.ui.components.NoNetwork
 
 @Composable
 fun FetchScreen(
-    onClick: (String) -> Unit
+    onClick: (String) -> Unit,
+    onClickServerDriven: (ServerDrivenModel) -> Unit
 ) {
     val fetchViewModel = hiltViewModel<FetchViewModel>()
     val uiState = fetchViewModel.uiState
 
+    LaunchedEffect(uiState) {
+        if (uiState.stringValue?.isNotEmpty() == true) {
+            onClick(uiState.stringValue)
+        } else if (uiState.serverDrivenValue != null) {
+            onClickServerDriven(uiState.serverDrivenValue)
+        }
+
+        fetchViewModel.navigationHandled()
+    }
+
     if (uiState.offline) {
         NoNetwork()
-    } else if (uiState.value?.isNotEmpty() == true) {
-        onClick(uiState.value)
     } else {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -32,6 +43,11 @@ fun FetchScreen(
                 onClick = { fetchViewModel.doFetch(false) }
             ) {
                 Text(text = "Make successful request")
+            }
+            Button(
+                onClick = { fetchViewModel.doServerDrivenFetch(false) }
+            ) {
+                Text(text = "Make successful SD request")
             }
             Button(
                 onClick = { fetchViewModel.doFetch(true) }

@@ -2,7 +2,6 @@ package com.example.myapplication.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -21,11 +20,11 @@ fun ComposeApp() {
     ) {
         composable(NavigationRoute.FETCH) { backStackEntry ->
             FetchScreen(
-                onClick = { id ->
-                    // In order to discard duplicated navigation events, we check the Lifecycle
-                    if (backStackEntry.lifecycle.currentState == Lifecycle.State.RESUMED) {
-                        navController.navigate("${NavigationRoute.SERVER_DRIVEN_UI}/$id")
-                    }
+                onClick = { message ->
+                    navController.navigate("${NavigationRoute.SERVER_DRIVEN_UI}/$message")
+                },
+                onClickServerDriven = { serverDrivenModel ->
+                    navController.navigate("${NavigationRoute.SERVER_DRIVEN_UI}/${serverDrivenModel.content?.title}")
                 }
             )
         }
