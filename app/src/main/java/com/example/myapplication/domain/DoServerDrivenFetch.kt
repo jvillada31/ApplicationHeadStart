@@ -20,7 +20,7 @@ class DoServerDrivenFetch @Inject constructor(
 
         val fetchResult = myApplicationRepository.doServerDrivenFetch()
 
-        validateOrThrow(fetchResult.type.name.isEmpty()) {
+        validateOrThrow(fetchResult.type.name.isNotEmpty()) {
             ResultError(stringLookup.getString(R.string.fetch_result_error_message))
         }
 
