@@ -2,11 +2,13 @@ package com.example.myapplication.di
 
 import com.example.myapplication.BuildConfig
 import com.example.myapplication.data.ServerDrivenResponse
-import com.example.myapplication.data.MyApplicationApi
-import com.example.myapplication.data.TypeResponse
 import com.example.myapplication.data.Type1Response
 import com.example.myapplication.data.Type2Response
+import com.example.myapplication.data.TypeResponse
+import com.example.myapplication.data.myscreen.remote.MyScreenApi
+import com.example.myapplication.domain.myscreen.model.ScreenType
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.adapters.EnumJsonAdapter
 import com.squareup.moshi.adapters.PolymorphicJsonAdapterFactory
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -27,6 +29,10 @@ object MyApplicationNetworkModule {
     @Singleton
     @Provides
     fun providesMoshi(): Moshi = Moshi.Builder()
+        .add(
+            ScreenType::class.java, EnumJsonAdapter.create(ScreenType::class.java)
+                .withUnknownFallback(ScreenType.PROCESSING)
+        )
         .add(
             PolymorphicJsonAdapterFactory.of(ServerDrivenResponse::class.java, "type")
                 .withSubtype(Type1Response::class.java, TypeResponse.Prueba.name)
@@ -79,6 +85,6 @@ object MyApplicationNetworkModule {
             .build()
 
     @Provides
-    internal fun providesMyApplicationApi(retrofit: Retrofit): MyApplicationApi =
-        retrofit.create(MyApplicationApi::class.java)
+    internal fun providesMyApplicationApi(retrofit: Retrofit): MyScreenApi =
+        retrofit.create(MyScreenApi::class.java)
 }

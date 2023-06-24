@@ -1,7 +1,7 @@
 package com.example.myapplication.di
 
-import com.example.myapplication.data.MyApplicationRepositoryImpl
-import com.example.myapplication.domain.MyApplicationRepository
+import com.example.myapplication.data.myscreen.MyScreenRepositoryImpl
+import com.example.myapplication.domain.myscreen.repository.MyScreenRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -13,6 +13,6 @@ abstract class MyApplicationRepositoryModule {
 
     @Binds
     abstract fun bindMyApplicationRepository(
-        myApplicationRepositoryImpl: MyApplicationRepositoryImpl
-    ): MyApplicationRepository
+        myApplicationRepositoryImpl: MyScreenRepositoryImpl
+    ): MyScreenRepository
 }

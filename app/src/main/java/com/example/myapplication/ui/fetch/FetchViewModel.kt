@@ -5,8 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myapplication.domain.DoFetch
-import com.example.myapplication.domain.DoServerDrivenFetch
+import com.example.myapplication.domain.myscreen.usecases.GetMyScreen
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -16,8 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FetchViewModel @Inject constructor(
-    private val doFetch: DoFetch,
-    private val doServerDrivenFetch: DoServerDrivenFetch
+    private val getMyScreen: GetMyScreen
 ) : ViewModel() {
 
     private var fetchJob: Job? = null
@@ -25,28 +23,13 @@ class FetchViewModel @Inject constructor(
     var uiState by mutableStateOf(FetchUiState())
         private set
 
-    fun doFetch(shouldFail: Boolean) {
+    fun getMyScreen(shouldFail: Boolean) {
         fetchJob?.cancel()
         fetchJob = viewModelScope.launch(Dispatchers.IO) {
-            doFetch.invoke(shouldFail)
+            getMyScreen.invoke(shouldFail)
                 .onSuccess { value ->
                     Timber.d("This is a success")
-                    uiState = uiState.copy(stringValue = value)
-                }
-                .onFailure { throwable ->
-                    Timber.wtf(throwable, "This is a failure")
-                    uiState = uiState.copy(offline = true)
-                }
-        }
-    }
-
-    fun doServerDrivenFetch(shouldFail: Boolean) {
-        fetchJob?.cancel()
-        fetchJob = viewModelScope.launch(Dispatchers.IO) {
-            doServerDrivenFetch.invoke(shouldFail)
-                .onSuccess { value ->
-                    Timber.d("This is a success")
-                    uiState = uiState.copy(serverDrivenValue = value)
+                    uiState = uiState.copy(myScreenModel = value)
                 }
                 .onFailure { throwable ->
                     Timber.wtf(throwable, "This is a failure")
@@ -57,8 +40,8 @@ class FetchViewModel @Inject constructor(
 
     fun navigationHandled() {
         uiState = uiState.copy(
-            stringValue = null,
-            serverDrivenValue = null
+            myScreenModel = null,
+            offline = false
         )
     }
 }
