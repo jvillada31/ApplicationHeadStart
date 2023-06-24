@@ -1,6 +1,7 @@
 package com.example.myapplication.data.myscreen.remote
 
 import com.example.myapplication.commons.extensions.resultOf
+import com.example.myapplication.data.myscreen.remote.model.mapToDomain
 import com.example.myapplication.domain.myscreen.model.MyScreenModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

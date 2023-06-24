@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.serverdriven
+package com.example.myapplication.ui.myscreen
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -15,14 +15,14 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class ServerDrivenViewModel @Inject constructor(
+class MyScreenViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private var fetchJob: Job? = null
 
     private val serviceDrivenMessage: String? = savedStateHandle[NavigationArgument.MESSAGE]
-    var uiState by mutableStateOf(ServerDrivenUiState())
+    var uiState by mutableStateOf(MyScreenUiState())
         private set
 
     init {

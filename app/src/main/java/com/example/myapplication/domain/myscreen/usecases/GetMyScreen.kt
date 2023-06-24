@@ -5,7 +5,7 @@ import com.example.myapplication.R
 import com.example.myapplication.commons.extensions.resultOf
 import com.example.myapplication.commons.resources.StringLookup
 import com.example.myapplication.domain.myscreen.model.MyScreenModel
-import com.example.myapplication.domain.myscreen.repository.MyScreenRepository
+import com.example.myapplication.domain.myscreen.MyScreenRepository
 import validateOrThrow
 import javax.inject.Inject
 

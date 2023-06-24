@@ -2,7 +2,7 @@ package com.example.myapplication.data.myscreen
 
 import com.example.myapplication.data.myscreen.remote.MyScreenRemoteDataSource
 import com.example.myapplication.domain.myscreen.model.MyScreenModel
-import com.example.myapplication.domain.myscreen.repository.MyScreenRepository
+import com.example.myapplication.domain.myscreen.MyScreenRepository
 import timber.log.Timber
 import javax.inject.Inject
 

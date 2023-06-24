@@ -1,7 +1,7 @@
 package com.example.myapplication.di
 
 import com.example.myapplication.data.myscreen.MyScreenRepositoryImpl
-import com.example.myapplication.domain.myscreen.repository.MyScreenRepository
+import com.example.myapplication.domain.myscreen.MyScreenRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

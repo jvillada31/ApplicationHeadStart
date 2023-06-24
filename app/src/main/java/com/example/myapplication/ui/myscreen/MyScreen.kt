@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.serverdriven
+package com.example.myapplication.ui.myscreen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,8 +11,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun ServerDrivenScreen() {
-    val serverDrivenViewModel = hiltViewModel<ServerDrivenViewModel>()
-    val uiState = serverDrivenViewModel.uiState
+    val myScreenViewModel = hiltViewModel<MyScreenViewModel>()
+    val uiState = myScreenViewModel.uiState
 
     Column(
         modifier = Modifier.fillMaxSize(),

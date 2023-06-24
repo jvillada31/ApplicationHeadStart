@@ -1,6 +1,7 @@
 package com.example.myapplication.data.myscreen.remote
 
 import com.example.myapplication.data.ServerDrivenResponse
+import com.example.myapplication.data.myscreen.remote.model.MyScreenResponse
 import retrofit2.Response
 import retrofit2.http.GET
 

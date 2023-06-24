@@ -4,7 +4,8 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class MyScreenModel(
-    val type: ScreenType,
-    val header: Header
-) : Parcelable
+enum class ScreenType : Parcelable {
+    APPROVED,
+    PROCESSING,
+    REJECTED
+}
