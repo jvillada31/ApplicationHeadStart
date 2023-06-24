@@ -8,7 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.myapplication.ui.fetch.FetchScreen
-import com.example.myapplication.ui.myscreen.ServerDrivenScreen
+import com.example.myapplication.ui.myscreen.MyScreen
 import com.example.myapplication.ui.theme.MyApplicationTheme
 
 @Composable
@@ -33,7 +33,7 @@ fun ComposeApp() {
                 }
             ),
         ) {
-            ServerDrivenScreen()
+            MyScreen()
         }
     }
 }

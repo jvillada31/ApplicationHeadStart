@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
-fun ServerDrivenScreen() {
+fun MyScreen() {
     val myScreenViewModel = hiltViewModel<MyScreenViewModel>()
     val uiState = myScreenViewModel.uiState
 
