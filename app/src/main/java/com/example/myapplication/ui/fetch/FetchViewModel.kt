@@ -33,15 +33,13 @@ class FetchViewModel @Inject constructor(
                 }
                 .onFailure { throwable ->
                     Timber.wtf(throwable, "This is a failure")
-                    uiState = uiState.copy(offline = true)
                 }
         }
     }
 
     fun navigationHandled() {
         uiState = uiState.copy(
-            myScreenIdentifier = null,
-            offline = false
+            myScreenIdentifier = null
         )
     }
 }

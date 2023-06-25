@@ -18,7 +18,9 @@ fun ComposeApp() {
         navController = navController,
         startDestination = NavigationRoute.FETCH
     ) {
-        composable(NavigationRoute.FETCH) { backStackEntry ->
+        composable(
+            route = NavigationRoute.FETCH
+        ) {
             FetchScreen(
                 onClick = { identifier ->
                     navController.navigate("${NavigationRoute.MY_SCREEN_UI}/${identifier}")
@@ -31,7 +33,7 @@ fun ComposeApp() {
                 navArgument(NavigationArgument.ID) {
                     type = NavType.LongType
                 }
-            ),
+            )
         ) {
             MyScreen()
         }
