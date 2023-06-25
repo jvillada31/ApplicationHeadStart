@@ -46,3 +46,13 @@ inline fun <R, T> Result<T>.mapResult(transform: (value: T) -> R): Result<R> {
         else -> Result.failure(exceptionOrNull() ?: error("Unreachable state"))
     }
 }
+
+/**
+ * Like [recoverCatching], but uses [resultOf] instead of [runCatching].
+ */
+inline fun <R, T : R> Result<T>.recoverResult(transform: (exception: Throwable) -> R): Result<R> {
+    return when (val exception = exceptionOrNull()) {
+        null -> this
+        else -> resultOf { transform(exception) }
+    }
+}

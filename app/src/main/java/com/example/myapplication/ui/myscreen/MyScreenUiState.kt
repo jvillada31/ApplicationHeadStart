@@ -1,5 +1,7 @@
 package com.example.myapplication.ui.myscreen
 
+import com.example.myapplication.domain.myscreen.model.MyScreenModel
+
 data class MyScreenUiState(
-    val value: String? = null
+    val myScreenModel: MyScreenModel? = null
 )

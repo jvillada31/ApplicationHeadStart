@@ -2,9 +2,9 @@ package com.example.myapplication.ui
 
 object NavigationRoute {
     const val FETCH = "fetch"
-    const val SERVER_DRIVEN_UI = "server_driven_ui"
+    const val MY_SCREEN_UI = "my_screen_ui"
 }
 
 object NavigationArgument {
-    const val MESSAGE = "message"
+    const val ID = "id"
 }

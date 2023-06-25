@@ -1,5 +1,6 @@
 package com.example.myapplication.data.myscreen
 
+import com.example.myapplication.commons.extensions.mapResult
 import com.example.myapplication.data.myscreen.cache.MyScreenCacheDataSource
 import com.example.myapplication.data.myscreen.remote.MyScreenRemoteDataSource
 import com.example.myapplication.domain.myscreen.MyScreenRepository
@@ -12,11 +13,18 @@ class MyScreenRepositoryImpl @Inject constructor(
     private val myScreenRemoteDataSource: MyScreenRemoteDataSource
 ) : MyScreenRepository {
 
-    override suspend fun getMyScreen(): MyScreenModel =
-        myScreenRemoteDataSource.getMyScreen()
-            .onSuccess { myScreenModel ->
+    override suspend fun fetchMyScreen(): Long =
+        myScreenRemoteDataSource
+            .getMyScreen()
+            .mapResult { myScreenModel ->
                 Timber.d("Persist the result from remote in cache")
-                myScreenCacheDataSource.storeMyScreen(myScreenModel)
+
+                myScreenCacheDataSource
+                    .storeMyScreen(myScreenModel)
+                    .getOrThrow()
             }
             .getOrThrow()
+
+    override suspend fun getMyScreen(myScreenIdentifier: Long): MyScreenModel =
+        myScreenCacheDataSource.getMyScreen(myScreenIdentifier).getOrThrow()
 }

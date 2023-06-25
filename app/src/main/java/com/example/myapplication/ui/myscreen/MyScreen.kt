@@ -19,6 +19,8 @@ fun MyScreen() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = uiState.value.toString())
+        Text(text = uiState.myScreenModel?.type?.name.orEmpty())
+        Text(text = uiState.myScreenModel?.header?.title.orEmpty())
+        Text(text = uiState.myScreenModel?.header?.iconUrl.orEmpty())
     }
 }

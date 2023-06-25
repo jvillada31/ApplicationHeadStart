@@ -20,16 +20,16 @@ fun ComposeApp() {
     ) {
         composable(NavigationRoute.FETCH) { backStackEntry ->
             FetchScreen(
-                onClick = { congratsSDModel ->
-                    navController.navigate("${NavigationRoute.SERVER_DRIVEN_UI}/${congratsSDModel.type.name}")
+                onClick = { identifier ->
+                    navController.navigate("${NavigationRoute.MY_SCREEN_UI}/${identifier}")
                 }
             )
         }
         composable(
-            route = "${NavigationRoute.SERVER_DRIVEN_UI}/{${NavigationArgument.MESSAGE}}",
+            route = "${NavigationRoute.MY_SCREEN_UI}/{${NavigationArgument.ID}}",
             arguments = listOf(
-                navArgument(NavigationArgument.MESSAGE) {
-                    type = NavType.StringType
+                navArgument(NavigationArgument.ID) {
+                    type = NavType.LongType
                 }
             ),
         ) {

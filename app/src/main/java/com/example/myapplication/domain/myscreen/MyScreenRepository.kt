@@ -4,5 +4,7 @@ import com.example.myapplication.domain.myscreen.model.MyScreenModel
 
 interface MyScreenRepository {
 
-    suspend fun getMyScreen(): MyScreenModel
+    suspend fun fetchMyScreen(): Long
+
+    suspend fun getMyScreen(myScreenIdentifier: Long): MyScreenModel
 }

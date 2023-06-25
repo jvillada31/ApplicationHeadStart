@@ -10,19 +10,18 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.myapplication.domain.myscreen.model.MyScreenModel
 import com.example.myapplication.ui.components.NoNetwork
 
 @Composable
 fun FetchScreen(
-    onClick: (MyScreenModel) -> Unit
+    onClick: (Long) -> Unit
 ) {
     val fetchViewModel = hiltViewModel<FetchViewModel>()
     val uiState = fetchViewModel.uiState
 
     LaunchedEffect(uiState) {
         when {
-            uiState.myScreenModel != null -> onClick(uiState.myScreenModel)
+            uiState.myScreenIdentifier != null -> onClick(uiState.myScreenIdentifier)
         }
 
         fetchViewModel.navigationHandled()
