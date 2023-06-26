@@ -15,7 +15,7 @@ class FetchMyScreen @Inject constructor(
 
     @CheckResult
     suspend operator fun invoke(shouldFail: Boolean): Result<Long> = resultOf {
-        if (shouldFail) {
+        validateOrThrow(shouldFail) {
             throw InputError(stringLookup.getString(R.string.fetch_input_error_message))
         }
 
