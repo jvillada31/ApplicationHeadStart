@@ -18,11 +18,9 @@ object MyApplicationDatabaseModule {
     @Singleton
     @Provides
     fun provideAppDatabase(@ApplicationContext appContext: Context): MyScreenDatabase {
-        return Room.databaseBuilder(
-            appContext,
-            MyScreenDatabase::class.java,
-            "Users"
-        ).fallbackToDestructiveMigration().build()
+        return Room.databaseBuilder(appContext, MyScreenDatabase::class.java, "MyApplication")
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     @Provides

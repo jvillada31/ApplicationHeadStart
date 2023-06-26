@@ -5,7 +5,7 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.example.myapplication.domain.myscreen.model.BodyRowType
+import com.example.myapplication.domain.myscreen.model.BodyRow
 import com.example.myapplication.domain.myscreen.model.MyScreenModel
 import com.example.myapplication.domain.myscreen.model.ScreenType
 
@@ -19,7 +19,7 @@ data class MyScreenEntity(
     var id: Long = 0,
     @ColumnInfo(name = "type") val type: ScreenType,
     @Embedded(prefix = "header_") val header: HeaderEntity?,
-    @ColumnInfo(name = "body") val body: List<BodyRowType>,
+    @ColumnInfo(name = "body") val body: List<BodyRow>,
     @Embedded(prefix = "footer_") val footer: FooterEntity?
 )
 
@@ -29,7 +29,7 @@ fun MyScreenEntity.mapToDomain(): MyScreenModel {
             id = id,
             type = type,
             header = header?.mapToDomain(),
-            body = listOf(),
+            body = body,
             footer = footer?.mapToDomain()
         )
     }
@@ -40,7 +40,7 @@ fun MyScreenModel.mapToCache(): MyScreenEntity {
         MyScreenEntity(
             type = type,
             header = header?.mapToCache(),
-            body = body.map { it.type }, // TODO
+            body = body, // TODO
             footer = footer?.mapToCache()
         )
     }
