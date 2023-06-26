@@ -7,10 +7,12 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class MyScreenResponse(
     val type: ScreenType,
-    val header: HeaderResponse? = null
+    val header: HeaderResponse? = null,
+    val footer: FooterResponse? = null
 )
 
 fun MyScreenResponse.mapToDomain(): MyScreenModel = MyScreenModel(
     type = this.type,
-    header = header?.mapToDomain() ?: error("header cannot be null")
+    header = header?.mapToDomain() ?: error("header cannot be null"),
+    footer = footer?.mapToDomain() ?: error("footer cannot be null")
 )

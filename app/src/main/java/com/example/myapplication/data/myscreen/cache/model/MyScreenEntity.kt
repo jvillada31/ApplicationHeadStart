@@ -17,7 +17,8 @@ data class MyScreenEntity(
     @ColumnInfo(name = "id")
     var id: Long = 0,
     @ColumnInfo(name = "type") val type: ScreenType,
-    @Embedded(prefix = "header_") val header: HeaderEntity
+    @Embedded(prefix = "header_") val header: HeaderEntity,
+    @Embedded(prefix = "footer_") val footer: FooterEntity
 )
 
 fun MyScreenEntity.mapToDomain(): MyScreenModel {
@@ -25,7 +26,8 @@ fun MyScreenEntity.mapToDomain(): MyScreenModel {
         MyScreenModel(
             id = id,
             type = type,
-            header = header.mapToDomain()
+            header = header.mapToDomain(),
+            footer = footer.mapToDomain()
         )
     }
 }
@@ -34,7 +36,8 @@ fun MyScreenModel.mapToCache(): MyScreenEntity {
     return with(this) {
         MyScreenEntity(
             type = type,
-            header = header.mapToCache()
+            header = header.mapToCache(),
+            footer = footer.mapToCache()
         )
     }
 }
