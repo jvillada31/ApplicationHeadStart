@@ -3,7 +3,9 @@ package com.example.myapplication.di
 import com.example.myapplication.BuildConfig
 import com.example.myapplication.data.myscreen.remote.MyScreenApi
 import com.example.myapplication.data.myscreen.remote.model.BodyRowResponse
+import com.example.myapplication.data.myscreen.remote.model.CrossSellingResponse
 import com.example.myapplication.data.myscreen.remote.model.MessageResponse
+import com.example.myapplication.data.myscreen.remote.model.SectionResponse
 import com.example.myapplication.domain.myscreen.model.BodyRowType
 import com.example.myapplication.domain.myscreen.model.ScreenType
 import com.squareup.moshi.Moshi
@@ -38,7 +40,9 @@ object MyApplicationNetworkModule {
         )
         .add(
             PolymorphicJsonAdapterFactory.of(BodyRowResponse::class.java, "type")
+                .withSubtype(CrossSellingResponse::class.java, BodyRowType.CROSS_SELLING.name)
                 .withSubtype(MessageResponse::class.java, BodyRowType.MESSAGE.name)
+                .withSubtype(SectionResponse::class.java, BodyRowType.SECTION.name)
         )
         .add(KotlinJsonAdapterFactory())
         .build()

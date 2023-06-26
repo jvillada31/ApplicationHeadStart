@@ -20,7 +20,9 @@ import coil.compose.AsyncImage
 import com.example.myapplication.R
 import com.example.myapplication.domain.myscreen.model.BodyRow
 import com.example.myapplication.domain.myscreen.model.Button
+import com.example.myapplication.domain.myscreen.model.CrossSelling
 import com.example.myapplication.domain.myscreen.model.Message
+import com.example.myapplication.domain.myscreen.model.Section
 
 @Composable
 fun MyScreen(
@@ -109,9 +111,21 @@ fun BodySection(
         ) {
             body.map { bodyRow ->
                 when (bodyRow) {
+                    is CrossSelling -> item {
+                        Text(
+                            text = bodyRow.text
+                        )
+                    }
+
                     is Message -> item {
                         Text(
                             text = bodyRow.text
+                        )
+                    }
+
+                    is Section -> item {
+                        Text(
+                            text = bodyRow.sectionTitle
                         )
                     }
                 }

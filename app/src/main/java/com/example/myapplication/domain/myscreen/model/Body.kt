@@ -4,8 +4,8 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-enum class BodyRowType : Parcelable {
-    CROSS_SELLING,
-    MESSAGE,
-    SECTION
-}
+data class Body(
+    val title: String,
+    val iconUrl: String,
+//    val closeAction: Action
+) : Parcelable

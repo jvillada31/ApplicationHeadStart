@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface MyScreenApi {
 
-    @GET("https://run.mocky.io/v3/5bdced55-9eb9-4228-afa2-6f4fa21b3f1d")
+    @GET("https://run.mocky.io/v3/8f7883cd-ffe6-46ec-9e21-9b183e3aa1ce")
     suspend fun getMyScreen(): Response<MyScreenResponse>
 }
