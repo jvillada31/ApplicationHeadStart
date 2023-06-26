@@ -1,28 +1,15 @@
 package com.example.myapplication.ui.myscreen
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.compose.AsyncImage
-import com.example.myapplication.R
-import com.example.myapplication.domain.myscreen.model.BodyRow
-import com.example.myapplication.domain.myscreen.model.Button
-import com.example.myapplication.domain.myscreen.model.CrossSelling
-import com.example.myapplication.domain.myscreen.model.Message
-import com.example.myapplication.domain.myscreen.model.Section
+import com.example.myapplication.ui.sections.BodySection
+import com.example.myapplication.ui.sections.FooterSection
+import com.example.myapplication.ui.sections.HeaderSection
 
 @Composable
 fun MyScreen(
@@ -74,85 +61,5 @@ fun MyScreen(
             },
             onClick = { onClick.invoke() }
         )
-    }
-}
-
-@Composable
-fun HeaderSection(
-    title: String,
-    iconUrl: String?,
-    modifier: Modifier
-) {
-    Row(
-        modifier = modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceAround,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(
-            text = title,
-        )
-        AsyncImage(
-            model = iconUrl,
-            contentDescription = "Header icon url",
-            placeholder = painterResource(R.drawable.ic_offline),
-            modifier = Modifier.size(40.dp)
-        )
-    }
-}
-
-@Composable
-fun BodySection(
-    body: List<BodyRow>?,
-    modifier: Modifier
-) {
-    if (body?.isNotEmpty() == true) {
-        LazyColumn(
-            modifier = modifier
-        ) {
-            body.map { bodyRow ->
-                when (bodyRow) {
-                    is CrossSelling -> item {
-                        Text(
-                            text = bodyRow.text
-                        )
-                    }
-
-                    is Message -> item {
-                        Text(
-                            text = bodyRow.text
-                        )
-                    }
-
-                    is Section -> item {
-                        Text(
-                            text = bodyRow.sectionTitle
-                        )
-                    }
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun FooterSection(
-    buttonList: List<Button>?,
-    modifier: Modifier,
-    onClick: () -> Unit
-) {
-    if (buttonList?.isNotEmpty() == true) {
-        Column(
-            modifier = modifier.fillMaxWidth(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            buttonList.map { button ->
-                Button(
-                    onClick = { onClick.invoke() }
-                ) {
-                    Text(text = button.label)
-                }
-            }
-        }
     }
 }
