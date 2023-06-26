@@ -1,11 +1,10 @@
 package com.example.myapplication.di
 
 import com.example.myapplication.BuildConfig
-import com.example.myapplication.data.ServerDrivenResponse
-import com.example.myapplication.data.Type1Response
-import com.example.myapplication.data.Type2Response
-import com.example.myapplication.data.TypeResponse
 import com.example.myapplication.data.myscreen.remote.MyScreenApi
+import com.example.myapplication.data.myscreen.remote.model.BodyRowResponse
+import com.example.myapplication.data.myscreen.remote.model.MessageResponse
+import com.example.myapplication.domain.myscreen.model.BodyRowType
 import com.example.myapplication.domain.myscreen.model.ScreenType
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.EnumJsonAdapter
@@ -34,9 +33,12 @@ object MyApplicationNetworkModule {
                 .withUnknownFallback(ScreenType.PROCESSING)
         )
         .add(
-            PolymorphicJsonAdapterFactory.of(ServerDrivenResponse::class.java, "type")
-                .withSubtype(Type1Response::class.java, TypeResponse.Prueba.name)
-                .withSubtype(Type2Response::class.java, TypeResponse.Prueba2.name)
+            BodyRowType::class.java, EnumJsonAdapter.create(BodyRowType::class.java)
+                .withUnknownFallback(null)
+        )
+        .add(
+            PolymorphicJsonAdapterFactory.of(BodyRowResponse::class.java, "type")
+                .withSubtype(MessageResponse::class.java, BodyRowType.MESSAGE.name)
         )
         .add(KotlinJsonAdapterFactory())
         .build()

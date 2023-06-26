@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,7 +18,9 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.example.myapplication.R
+import com.example.myapplication.domain.myscreen.model.BodyRow
 import com.example.myapplication.domain.myscreen.model.Button
+import com.example.myapplication.domain.myscreen.model.Message
 
 @Composable
 fun MyScreen(
@@ -29,7 +32,7 @@ fun MyScreen(
     ConstraintLayout(
         modifier = Modifier.fillMaxSize()
     ) {
-        val (type, header, footer) = createRefs()
+        val (type, header, body, footer) = createRefs()
 
         Text(
             text = uiState.myScreenModel?.type?.name.orEmpty(),
@@ -47,6 +50,16 @@ fun MyScreen(
                 top.linkTo(type.bottom, margin = 16.dp)
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
+            }
+        )
+
+        BodySection(
+            body = uiState.myScreenModel?.body,
+            modifier = Modifier.constrainAs(body) {
+                top.linkTo(header.bottom)
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+                bottom.linkTo(footer.top)
             }
         )
 
@@ -82,6 +95,28 @@ fun HeaderSection(
             placeholder = painterResource(R.drawable.ic_offline),
             modifier = Modifier.size(40.dp)
         )
+    }
+}
+
+@Composable
+fun BodySection(
+    body: List<BodyRow>?,
+    modifier: Modifier
+) {
+    if (body?.isNotEmpty() == true) {
+        LazyColumn(
+            modifier = modifier
+        ) {
+            body.map { bodyRow ->
+                when (bodyRow) {
+                    is Message -> item {
+                        Text(
+                            text = bodyRow.text
+                        )
+                    }
+                }
+            }
+        }
     }
 }
 
