@@ -20,7 +20,9 @@ import com.example.myapplication.R
 import com.example.myapplication.domain.myscreen.model.Button
 
 @Composable
-fun MyScreen() {
+fun MyScreen(
+    onClick: () -> Unit
+) {
     val myScreenViewModel = hiltViewModel<MyScreenViewModel>()
     val uiState = myScreenViewModel.uiState
 
@@ -54,7 +56,8 @@ fun MyScreen() {
                 bottom.linkTo(parent.bottom, margin = 16.dp)
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
-            }
+            },
+            onClick = { onClick.invoke() }
         )
     }
 }
@@ -85,7 +88,8 @@ fun HeaderSection(
 @Composable
 fun FooterSection(
     buttonList: List<Button>?,
-    modifier: Modifier
+    modifier: Modifier,
+    onClick: () -> Unit
 ) {
     if (buttonList?.isNotEmpty() == true) {
         Column(
@@ -95,7 +99,7 @@ fun FooterSection(
         ) {
             buttonList.map { button ->
                 Button(
-                    onClick = { TODO("Show a Snackbar here") }
+                    onClick = { onClick.invoke() }
                 ) {
                     Text(text = button.label)
                 }

@@ -10,6 +10,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import kotlinx.coroutines.launch
 
 @Composable
 fun FetchScreen(
@@ -19,11 +20,13 @@ fun FetchScreen(
     val uiState = fetchViewModel.uiState
 
     LaunchedEffect(uiState) {
-        when {
-            uiState.myScreenIdentifier != null -> onClick(uiState.myScreenIdentifier)
-        }
+        launch {
+            when {
+                uiState.myScreenIdentifier != null -> onClick(uiState.myScreenIdentifier)
+            }
 
-        fetchViewModel.navigationHandled()
+            fetchViewModel.navigationHandled()
+        }
     }
 
     Column(
