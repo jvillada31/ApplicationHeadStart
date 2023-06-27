@@ -1,4 +1,4 @@
-package com.example.myapplication.di
+package com.example.myapplication.di.myscreen
 
 import com.example.myapplication.data.myscreen.MyScreenRepositoryImpl
 import com.example.myapplication.domain.myscreen.MyScreenRepository
@@ -9,10 +9,10 @@ import dagger.hilt.android.components.ViewModelComponent
 
 @Module
 @InstallIn(ViewModelComponent::class)
-abstract class MyApplicationRepositoryModule {
+abstract class MyScreenRepositoryModule {
 
     @Binds
-    abstract fun bindMyApplicationRepository(
-        myApplicationRepositoryImpl: MyScreenRepositoryImpl
+    abstract fun bindMyScreenRepositoryImpl(
+        myScreenRepositoryImpl: MyScreenRepositoryImpl
     ): MyScreenRepository
 }

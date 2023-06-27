@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.myscreen
+package com.example.myapplication.ui.myscreen.result
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -17,21 +17,21 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class MyScreenViewModel @Inject constructor(
+class ResultViewModel @Inject constructor(
     private val getMyScreen: GetMyScreen,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private var fetchJob: Job? = null
 
-    private val myScreenIdentifier: Long? = savedStateHandle[NavigationArgument.ID]
-    var uiState by mutableStateOf(MyScreenUiState())
+    private val resultIdentifier: Long? = savedStateHandle[NavigationArgument.ID]
+    var uiState by mutableStateOf(ResultUiState())
         private set
 
     init {
         fetchJob?.cancel()
         fetchJob = viewModelScope.launch(Dispatchers.IO) {
-            myScreenIdentifier?.let { id ->
+            resultIdentifier?.let { id ->
                 getMyScreen.invoke(id)
                     .onSuccess { myScreenModel ->
                         Timber.d("This is a success")

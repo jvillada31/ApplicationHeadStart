@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.fetch
+package com.example.myapplication.ui.myscreen.fetch
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,6 +33,7 @@ class FetchViewModel @Inject constructor(
                 }
                 .onFailure { throwable ->
                     Timber.wtf(throwable, "This is a failure")
+                    uiState = uiState.copy(noInternet = true)
                 }
         }
     }

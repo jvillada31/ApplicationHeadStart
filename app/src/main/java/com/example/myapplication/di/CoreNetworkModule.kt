@@ -25,7 +25,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object MyApplicationNetworkModule {
+object CoreNetworkModule {
 
     @Singleton
     @Provides
@@ -89,8 +89,4 @@ object MyApplicationNetworkModule {
             .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
-
-    @Provides
-    internal fun providesMyApplicationApi(retrofit: Retrofit): MyScreenApi =
-        retrofit.create(MyScreenApi::class.java)
 }

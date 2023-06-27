@@ -40,7 +40,7 @@ fun MyScreenModel.mapToCache(): MyScreenEntity {
         MyScreenEntity(
             type = type,
             header = header?.mapToCache(),
-            body = body, // TODO
+            body = body,
             footer = footer?.mapToCache()
         )
     }

@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.fetch
+package com.example.myapplication.ui.myscreen.fetch
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,6 +10,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.myapplication.ui.components.NoNetwork
 import kotlinx.coroutines.launch
 
 @Composable
@@ -29,15 +30,19 @@ fun FetchScreen(
         }
     }
 
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Button(
-            onClick = { fetchViewModel.getMyScreen(false) }
+    if (uiState.noInternet) {
+        NoNetwork()
+    } else {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "Make successful MyScreen request")
+            Button(
+                onClick = { fetchViewModel.getMyScreen(false) }
+            ) {
+                Text(text = "Make successful MyScreen request")
+            }
         }
     }
 }

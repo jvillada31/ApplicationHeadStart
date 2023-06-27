@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.myscreen
+package com.example.myapplication.ui.myscreen.result
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
@@ -12,11 +12,11 @@ import com.example.myapplication.ui.sections.FooterSection
 import com.example.myapplication.ui.sections.HeaderSection
 
 @Composable
-fun MyScreen(
+fun ResultScreen(
     onClick: () -> Unit
 ) {
-    val myScreenViewModel = hiltViewModel<MyScreenViewModel>()
-    val uiState = myScreenViewModel.uiState
+    val resultViewModel = hiltViewModel<ResultViewModel>()
+    val uiState = resultViewModel.uiState
 
     ConstraintLayout(
         modifier = Modifier.fillMaxSize()

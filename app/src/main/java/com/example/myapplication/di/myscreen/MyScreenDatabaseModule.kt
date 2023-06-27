@@ -1,4 +1,4 @@
-package com.example.myapplication.di
+package com.example.myapplication.di.myscreen
 
 import android.content.Context
 import androidx.room.Room
@@ -13,12 +13,12 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-object MyApplicationDatabaseModule {
+object MyScreenDatabaseModule {
 
     @Singleton
     @Provides
-    fun provideAppDatabase(@ApplicationContext appContext: Context): MyScreenDatabase {
-        return Room.databaseBuilder(appContext, MyScreenDatabase::class.java, "MyApplication")
+    fun provideMyScreenDatabase(@ApplicationContext appContext: Context): MyScreenDatabase {
+        return Room.databaseBuilder(appContext, MyScreenDatabase::class.java, "MyScreen")
             .fallbackToDestructiveMigration()
             .build()
     }

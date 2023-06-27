@@ -10,8 +10,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.myapplication.ui.fetch.FetchScreen
-import com.example.myapplication.ui.myscreen.MyScreen
+import com.example.myapplication.ui.myscreen.fetch.FetchScreen
+import com.example.myapplication.ui.myscreen.result.ResultScreen
 import com.example.myapplication.ui.theme.MyApplicationTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -43,7 +43,7 @@ fun ComposeApp(
                 }
             )
         ) {
-            MyScreen(
+            ResultScreen(
                 onClick = {
                     scope.launch {
                         snackbarHostState.showSnackbar(
