@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun FetchScreen(
+    modifier: Modifier,
     onClick: (Long) -> Unit
 ) {
     val fetchViewModel = hiltViewModel<FetchViewModel>()
@@ -31,12 +32,12 @@ fun FetchScreen(
     }
 
     if (uiState.noNetwork) {
-        NoNetwork {
+        NoNetwork(modifier) {
             fetchViewModel.getMyScreen(false)
         }
     } else {
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
