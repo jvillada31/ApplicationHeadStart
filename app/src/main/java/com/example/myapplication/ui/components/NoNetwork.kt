@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -20,7 +21,9 @@ import com.example.myapplication.R
 import com.example.myapplication.ui.theme.MyApplicationTheme
 
 @Composable
-fun NoNetwork() {
+fun NoNetwork(
+    onClick: () -> Unit
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -43,6 +46,18 @@ fun NoNetwork() {
                 text = stringResource(id = R.string.network_error_message),
                 color = MaterialTheme.colorScheme.onBackground
             )
+            Button(
+                onClick = {
+                    onClick.invoke()
+                },
+                modifier = Modifier.padding(top = 16.dp)
+            ) {
+                Text(
+                    text = stringResource(id = R.string.network_error_cta),
+
+                    color = MaterialTheme.colorScheme.onPrimary
+                )
+            }
         }
     }
 }
@@ -51,6 +66,6 @@ fun NoNetwork() {
 @Composable
 fun NoNetworkPreview() {
     MyApplicationTheme {
-        NoNetwork()
+        NoNetwork {}
     }
 }

@@ -30,8 +30,10 @@ fun FetchScreen(
         }
     }
 
-    if (uiState.noInternet) {
-        NoNetwork()
+    if (uiState.noNetwork) {
+        NoNetwork {
+            fetchViewModel.getMyScreen(false)
+        }
     } else {
         Column(
             modifier = Modifier.fillMaxSize(),

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Application POC</string>
     <string name="network_error_message">Please check your network connection</string>
+    <string name="network_error_cta">Try again</string>
     <string name="fetch_input_error_message">Input is not as required, this is unexpected, needs to be handled</string>
     <string name="fetch_result_error_message">Something is empty, this is unexpected, needs to be handled</string>
 </resources>

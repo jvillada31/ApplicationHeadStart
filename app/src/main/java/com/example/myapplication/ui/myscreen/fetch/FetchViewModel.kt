@@ -33,7 +33,7 @@ class FetchViewModel @Inject constructor(
                 }
                 .onFailure { throwable ->
                     Timber.wtf(throwable, "This is a failure")
-                    uiState = uiState.copy(noInternet = true)
+                    uiState = uiState.copy(noNetwork = true)
                 }
         }
     }
