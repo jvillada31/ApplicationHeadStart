@@ -31,18 +31,21 @@ fun BodySection(
             body.map { bodyRow ->
                 when (bodyRow) {
                     is CrossSelling -> item {
+                        // CrossSelling(...)
                         Text(
                             text = bodyRow.text, textAlign = TextAlign.Center, modifier = Modifier.width(150.dp)
                         )
                     }
 
                     is Message -> item {
+                        // Message(...)
                         Text(
                             text = bodyRow.text, textAlign = TextAlign.Center, modifier = Modifier.width(150.dp)
                         )
                     }
 
                     is Section -> item {
+                        // Section(...)
                         Text(
                             text = bodyRow.sectionTitle, textAlign = TextAlign.Center, modifier = Modifier.width(150.dp)
                         )
