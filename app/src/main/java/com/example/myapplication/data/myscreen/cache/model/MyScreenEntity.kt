@@ -28,9 +28,9 @@ fun MyScreenEntity.mapToDomain(): MyScreenModel {
         MyScreenModel(
             id = id,
             type = type,
-            header = header?.mapToDomain(),
+            header = header?.mapToDomain() ?: error("header cannot be null"),
             body = body,
-            footer = footer?.mapToDomain()
+            footer = footer?.mapToDomain() ?: error("footer cannot be null"),
         )
     }
 }
@@ -39,9 +39,9 @@ fun MyScreenModel.mapToCache(): MyScreenEntity {
     return with(this) {
         MyScreenEntity(
             type = type,
-            header = header?.mapToCache(),
+            header = header.mapToCache(),
             body = body,
-            footer = footer?.mapToCache()
+            footer = footer.mapToCache()
         )
     }
 }

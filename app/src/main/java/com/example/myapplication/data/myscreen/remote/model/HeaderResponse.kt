@@ -12,6 +12,6 @@ data class HeaderResponse(
 )
 
 fun HeaderResponse.mapToDomain(): Header = Header(
-    title = this.title.orEmpty(),
+    title = this.title ?: error("title cannot be null"),
     iconUrl = this.iconUrl ?: DEFAULT_ICON_URL
 )

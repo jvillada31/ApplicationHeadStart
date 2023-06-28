@@ -5,7 +5,7 @@ import com.example.myapplication.domain.myscreen.model.Header
 
 data class HeaderEntity(
     @ColumnInfo(name = "title") val title: String,
-    @ColumnInfo(name = "iconUrl") val iconUrl: String
+    @ColumnInfo(name = "iconUrl") val iconUrl: String?
 )
 
 fun HeaderEntity.mapToDomain(): Header {
