@@ -46,12 +46,7 @@ fun SectionModelMapper(
                         textAlign = TextAlign.Center
                     )
 
-                is PaymentMethodInfoModel ->
-                    Text(
-                        text = model.methodType,
-                        color = Color.Black.copy(alpha = 0.9f),
-                        textAlign = TextAlign.Center
-                    )
+                is PaymentMethodInfoModel -> PaymentMethodInfo(model)
 
                 is SectionModel -> Timber.d("no-op")
             }
@@ -98,11 +93,7 @@ fun BodyModelMapper(
                 }
 
                 is PaymentMethodInfoModel -> item {
-                    Text(
-                        text = model.methodType,
-                        color = Color.Black.copy(alpha = 0.9f),
-                        textAlign = TextAlign.Center
-                    )
+                    PaymentMethodInfo(model)
                 }
             }
         }
