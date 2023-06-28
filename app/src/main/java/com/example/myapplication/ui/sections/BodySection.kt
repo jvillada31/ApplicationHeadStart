@@ -9,6 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.myapplication.domain.myscreen.model.BodyRow
@@ -33,21 +34,29 @@ fun BodySection(
                     is CrossSelling -> item {
                         // CrossSelling(...)
                         Text(
-                            text = bodyRow.text, textAlign = TextAlign.Center, modifier = Modifier.width(150.dp)
+                            text = bodyRow.text,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.width(150.dp)
                         )
                     }
 
                     is Message -> item {
                         // Message(...)
                         Text(
-                            text = bodyRow.text, textAlign = TextAlign.Center, modifier = Modifier.width(150.dp)
+                            text = bodyRow.text,
+                            color = Color.Black.copy(alpha = 0.9f),
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.width(150.dp)
                         )
                     }
 
                     is Section -> item {
                         // Section(...)
                         Text(
-                            text = bodyRow.sectionTitle, textAlign = TextAlign.Center, modifier = Modifier.width(150.dp)
+                            text = bodyRow.sectionTitle,
+                            color = Color.Black.copy(alpha = 0.9f),
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.width(150.dp)
                         )
                     }
                 }

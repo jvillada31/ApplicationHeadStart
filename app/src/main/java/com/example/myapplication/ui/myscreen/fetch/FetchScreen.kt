@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun FetchScreen(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     onClick: (Long) -> Unit
 ) {
     val fetchViewModel = hiltViewModel<FetchViewModel>()

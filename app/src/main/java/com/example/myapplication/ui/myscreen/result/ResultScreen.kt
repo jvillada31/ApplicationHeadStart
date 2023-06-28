@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -13,14 +15,15 @@ import com.example.myapplication.ui.sections.HeaderSection
 
 @Composable
 fun ResultScreen(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
     val resultViewModel = hiltViewModel<ResultViewModel>()
     val uiState = resultViewModel.uiState
 
     ConstraintLayout(
-        modifier = modifier.fillMaxSize()
+        modifier = modifier
+            .fillMaxSize()
     ) {
         val (type, header, body, footer) = createRefs()
 
@@ -30,7 +33,9 @@ fun ResultScreen(
                 top.linkTo(parent.top, margin = 16.dp)
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
-            }
+            },
+            color = uiState.myScreenModel?.type?.toColor() ?: Color.Black.copy(alpha = 0.9f),
+            fontWeight = FontWeight(600)
         )
 
         HeaderSection(

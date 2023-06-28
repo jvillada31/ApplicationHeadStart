@@ -1,13 +1,13 @@
 package com.example.myapplication.ui
 
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.background
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 fun ComposeApp(
     scope: CoroutineScope,
     snackbarHostState: SnackbarHostState,
-    modifier: Modifier
+    modifier: Modifier = Modifier
 ) {
     val navController = rememberNavController()
     NavHost(
@@ -71,8 +71,7 @@ fun ComposeAppPreview(
     MyApplicationTheme {
         ComposeApp(
             scope,
-            snackbarHostState,
-            Modifier.padding(0.dp)
+            snackbarHostState
         )
     }
 }
