@@ -39,7 +39,6 @@ fun SectionComposable(
             fontWeight = FontWeight(600),
         )
         Divider(
-            modifier = modifier,
             thickness = 1.dp,
             color = Color.LightGray
         )
