@@ -3,7 +3,6 @@ package com.example.myapplication.ui.sections
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Card
@@ -25,11 +24,11 @@ import com.example.myapplication.domain.myscreen.model.Section
 @Composable
 fun BodySection(
     body: List<BodyRow>?,
-    modifier: Modifier
+    modifier: Modifier = Modifier
 ) {
     if (body?.isNotEmpty() == true) {
         LazyColumn(
-            modifier = modifier.fillMaxSize(),
+            modifier = modifier,
             contentPadding = PaddingValues(horizontal = 20.dp, vertical = 8.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
             horizontalAlignment = Alignment.CenterHorizontally

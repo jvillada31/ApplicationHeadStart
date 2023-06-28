@@ -8,6 +8,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.myapplication.ui.sections.BodySection
 import com.example.myapplication.ui.sections.FooterSection
@@ -30,7 +31,7 @@ fun ResultScreen(
         Text(
             text = uiState.myScreenModel?.type?.name.orEmpty(),
             modifier = modifier.constrainAs(type) {
-                top.linkTo(parent.top, margin = 16.dp)
+                top.linkTo(parent.top, margin = 20.dp)
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
             },
@@ -51,19 +52,20 @@ fun ResultScreen(
         BodySection(
             body = uiState.myScreenModel?.body,
             modifier = modifier.constrainAs(body) {
-                top.linkTo(header.bottom)
+                top.linkTo(header.bottom, margin = 16.dp)
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
-                bottom.linkTo(footer.top)
+                bottom.linkTo(footer.top, margin = 16.dp)
+                height = Dimension.fillToConstraints
             }
         )
 
         FooterSection(
             buttonList = uiState.myScreenModel?.footer?.buttonList,
             modifier = modifier.constrainAs(footer) {
-                bottom.linkTo(parent.bottom, margin = 16.dp)
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
+                bottom.linkTo(parent.bottom, margin = 20.dp)
             },
             onClick = { onClick.invoke() }
         )
