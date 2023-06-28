@@ -8,21 +8,21 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.myapplication.domain.myscreen.model.Button
+import com.example.myapplication.domain.myscreen.model.ButtonModel
 
 @Composable
 fun FooterSection(
-    buttonList: List<Button>?,
+    buttonModelList: List<ButtonModel>?,
     modifier: Modifier,
     onClick: () -> Unit
 ) {
-    if (buttonList?.isNotEmpty() == true) {
+    if (buttonModelList?.isNotEmpty() == true) {
         Column(
             modifier = modifier.fillMaxWidth(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            buttonList.map { button ->
+            buttonModelList.map { button ->
                 Button(
                     onClick = { onClick.invoke() }
                 ) {

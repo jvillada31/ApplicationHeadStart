@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 data class MyScreenModel(
     val id: Long? = null,
     val type: ScreenType,
-    val header: Header,
-    val body: List<BodyRow>,
-    val footer: Footer
+    val headerModel: HeaderModel,
+    val body: List<BodyRowModel>,
+    val footerModel: FooterModel
 ) : Parcelable

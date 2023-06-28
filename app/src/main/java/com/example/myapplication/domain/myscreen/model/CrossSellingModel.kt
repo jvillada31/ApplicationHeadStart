@@ -4,10 +4,10 @@ import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Section(
-    val sectionTitle: String
-) : BodyRow {
+data class CrossSellingModel(
+    val text: String
+) : BodyRowModel {
 
     @IgnoredOnParcel
-    override val type: BodyRowType = BodyRowType.SECTION
+    override val type: BodyRowType = BodyRowType.CROSS_SELLING
 }

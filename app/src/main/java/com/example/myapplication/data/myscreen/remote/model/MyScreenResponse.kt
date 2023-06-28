@@ -14,7 +14,7 @@ data class MyScreenResponse(
 
 fun MyScreenResponse.mapToDomain(): MyScreenModel = MyScreenModel(
     type = this.type,
-    header = header?.mapToDomain() ?: error("header cannot be null"),
+    headerModel = header?.mapToDomain() ?: error("header cannot be null"),
     body = body?.map { it.mapToDomain() } ?: error("body cannot be null"),
-    footer = footer?.mapToDomain() ?: error("footer cannot be null")
+    footerModel = footer?.mapToDomain() ?: error("footer cannot be null")
 )

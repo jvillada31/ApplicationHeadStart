@@ -1,24 +1,24 @@
 package com.example.myapplication.data.myscreen.cache.model
 
 import androidx.room.ColumnInfo
-import com.example.myapplication.domain.myscreen.model.Footer
+import com.example.myapplication.domain.myscreen.model.FooterModel
 
 data class FooterEntity(
     @ColumnInfo(name = "buttonList") val buttonList: List<ButtonEntity>
 )
 
-fun FooterEntity.mapToDomain(): Footer {
+fun FooterEntity.mapToDomain(): FooterModel {
     return with(this) {
-        Footer(
-            buttonList = buttonList.map { it.mapToDomain() }
+        FooterModel(
+            buttonModelList = buttonList.map { it.mapToDomain() }
         )
     }
 }
 
-fun Footer.mapToCache(): FooterEntity {
+fun FooterModel.mapToCache(): FooterEntity {
     return with(this) {
         FooterEntity(
-            buttonList = buttonList.map { it.mapToCache() }
+            buttonList = buttonModelList.map { it.mapToCache() }
         )
     }
 }

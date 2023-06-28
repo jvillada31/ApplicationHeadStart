@@ -15,10 +15,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.myapplication.domain.myscreen.model.SectionModel
 
 @Composable
-fun SectionComposable(
-    sectionTitle: String,
+fun Section(
+    section: SectionModel,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -32,7 +33,7 @@ fun SectionComposable(
         ),
     ) {
         Text(
-            text = sectionTitle,
+            text = section.sectionTitle,
             modifier = Modifier.padding(top = 8.dp, start = 16.dp, bottom = 8.dp),
             color = Color.Black.copy(alpha = 0.9f),
             fontSize = 16.sp,
@@ -40,7 +41,9 @@ fun SectionComposable(
         )
         Divider(
             thickness = 1.dp,
-            color = Color.LightGray
+            color = Color.LightGray.copy(alpha = 0.6f)
         )
+
+        SectionModelMapper(bodyRowModel = section.bodyRowModel)
     }
 }

@@ -5,7 +5,7 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.example.myapplication.domain.myscreen.model.BodyRow
+import com.example.myapplication.domain.myscreen.model.BodyRowModel
 import com.example.myapplication.domain.myscreen.model.MyScreenModel
 import com.example.myapplication.domain.myscreen.model.ScreenType
 
@@ -19,7 +19,7 @@ data class MyScreenEntity(
     var id: Long = 0,
     @ColumnInfo(name = "type") val type: ScreenType,
     @Embedded(prefix = "header_") val header: HeaderEntity?,
-    @ColumnInfo(name = "body") val body: List<BodyRow>,
+    @ColumnInfo(name = "body") val body: List<BodyRowModel>,
     @Embedded(prefix = "footer_") val footer: FooterEntity?
 )
 
@@ -28,9 +28,9 @@ fun MyScreenEntity.mapToDomain(): MyScreenModel {
         MyScreenModel(
             id = id,
             type = type,
-            header = header?.mapToDomain() ?: error("header cannot be null"),
+            headerModel = header?.mapToDomain() ?: error("header cannot be null"),
             body = body,
-            footer = footer?.mapToDomain() ?: error("footer cannot be null"),
+            footerModel = footer?.mapToDomain() ?: error("footer cannot be null"),
         )
     }
 }
@@ -39,9 +39,9 @@ fun MyScreenModel.mapToCache(): MyScreenEntity {
     return with(this) {
         MyScreenEntity(
             type = type,
-            header = header.mapToCache(),
+            header = headerModel.mapToCache(),
             body = body,
-            footer = footer.mapToCache()
+            footer = footerModel.mapToCache()
         )
     }
 }

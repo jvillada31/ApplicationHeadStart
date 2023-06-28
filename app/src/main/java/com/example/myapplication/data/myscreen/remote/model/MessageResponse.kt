@@ -1,8 +1,8 @@
 package com.example.myapplication.data.myscreen.remote.model
 
-import com.example.myapplication.domain.myscreen.model.BodyRow
+import com.example.myapplication.domain.myscreen.model.BodyRowModel
 import com.example.myapplication.domain.myscreen.model.BodyRowType
-import com.example.myapplication.domain.myscreen.model.Message
+import com.example.myapplication.domain.myscreen.model.MessageModel
 
 data class MessageResponse(
     val text: String
@@ -10,7 +10,7 @@ data class MessageResponse(
 
     override val type: BodyRowType = BodyRowType.MESSAGE
 
-    override fun mapToDomain(): BodyRow = Message(
+    override fun mapToDomain(): BodyRowModel = MessageModel(
         text = text
     )
 }

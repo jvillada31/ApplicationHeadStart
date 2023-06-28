@@ -4,6 +4,6 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-sealed interface BodyRow : Parcelable {
-    val type: BodyRowType
-}
+data class FooterModel(
+    val buttonModelList: List<ButtonModel>
+) : Parcelable

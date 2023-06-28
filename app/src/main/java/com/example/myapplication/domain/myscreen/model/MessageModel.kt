@@ -4,9 +4,9 @@ import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Message(
+data class MessageModel(
     val text: String
-) : BodyRow {
+) : BodyRowModel {
 
     @IgnoredOnParcel
     override val type: BodyRowType = BodyRowType.MESSAGE

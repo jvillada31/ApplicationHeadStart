@@ -2,16 +2,13 @@ package com.example.myapplication.data.converters
 
 import androidx.room.TypeConverter
 import com.example.myapplication.data.myscreen.cache.model.ButtonEntity
-import com.example.myapplication.data.myscreen.remote.model.BodyRowResponse
-import com.example.myapplication.data.myscreen.remote.model.CrossSellingResponse
-import com.example.myapplication.data.myscreen.remote.model.MessageResponse
-import com.example.myapplication.data.myscreen.remote.model.SectionResponse
-import com.example.myapplication.domain.myscreen.model.BodyRow
+import com.example.myapplication.domain.myscreen.model.BodyRowModel
 import com.example.myapplication.domain.myscreen.model.BodyRowType
-import com.example.myapplication.domain.myscreen.model.CrossSelling
-import com.example.myapplication.domain.myscreen.model.Message
+import com.example.myapplication.domain.myscreen.model.CrossSellingModel
+import com.example.myapplication.domain.myscreen.model.MessageModel
+import com.example.myapplication.domain.myscreen.model.PaymentMethodInfoModel
 import com.example.myapplication.domain.myscreen.model.ScreenType
-import com.example.myapplication.domain.myscreen.model.Section
+import com.example.myapplication.domain.myscreen.model.SectionModel
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
@@ -33,28 +30,29 @@ class MyScreenCacheConverters {
     @TypeConverter
     fun fromScreenType(value: ScreenType) = value.name
 
-    private val bodyRowParametrizedType: ParameterizedType =
-        Types.newParameterizedType(List::class.java, BodyRow::class.java)
-    private val bodyRowJsonAdapter: JsonAdapter<List<BodyRow>> =
+    private val bodyRowModelParametrizedType: ParameterizedType =
+        Types.newParameterizedType(List::class.java, BodyRowModel::class.java)
+    private val bodyRowModelJsonAdapter: JsonAdapter<List<BodyRowModel>> =
         Moshi.Builder()
             .add(
-                PolymorphicJsonAdapterFactory.of(BodyRow::class.java, "type")
-                    .withSubtype(CrossSelling::class.java, BodyRowType.CROSS_SELLING.name)
-                    .withSubtype(Message::class.java, BodyRowType.MESSAGE.name)
-                    .withSubtype(Section::class.java, BodyRowType.SECTION.name)
+                PolymorphicJsonAdapterFactory.of(BodyRowModel::class.java, "type")
+                    .withSubtype(CrossSellingModel::class.java, BodyRowType.CROSS_SELLING.name)
+                    .withSubtype(MessageModel::class.java, BodyRowType.MESSAGE.name)
+                    .withSubtype(PaymentMethodInfoModel::class.java, BodyRowType.PAYMENT_METHOD_INFO.name)
+                    .withSubtype(SectionModel::class.java, BodyRowType.SECTION.name)
             )
             .add(KotlinJsonAdapterFactory())
             .build()
-            .adapter(bodyRowParametrizedType)
+            .adapter(bodyRowModelParametrizedType)
 
     @TypeConverter
-    fun toBodyRowList(value: String?): List<BodyRow>? {
-        return if (value != null) bodyRowJsonAdapter.fromJson(value) else null
+    fun toBodyRowList(value: String?): List<BodyRowModel>? {
+        return if (value != null) bodyRowModelJsonAdapter.fromJson(value) else null
     }
 
     @TypeConverter
-    fun fromBodyRow(bodyRowList: List<BodyRow>?): String? {
-        return bodyRowJsonAdapter.toJson(bodyRowList)
+    fun fromBodyRow(bodyRowModelList: List<BodyRowModel>?): String? {
+        return bodyRowModelJsonAdapter.toJson(bodyRowModelList)
     }
 
     private val buttonParametrizedType: ParameterizedType =

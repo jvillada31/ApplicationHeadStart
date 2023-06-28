@@ -4,8 +4,6 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Header(
-    val title: String,
-    val iconUrl: String?,
-//    val closeAction: Action
+data class ButtonModel(
+    val label: String
 ) : Parcelable

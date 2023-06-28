@@ -1,8 +1,8 @@
 package com.example.myapplication.data.myscreen.remote.model
 
-import com.example.myapplication.domain.myscreen.model.BodyRow
+import com.example.myapplication.domain.myscreen.model.BodyRowModel
 import com.example.myapplication.domain.myscreen.model.BodyRowType
-import com.example.myapplication.domain.myscreen.model.CrossSelling
+import com.example.myapplication.domain.myscreen.model.CrossSellingModel
 
 data class CrossSellingResponse(
     val text: String
@@ -10,7 +10,7 @@ data class CrossSellingResponse(
 
     override val type: BodyRowType = BodyRowType.CROSS_SELLING
 
-    override fun mapToDomain(): BodyRow = CrossSelling(
+    override fun mapToDomain(): BodyRowModel = CrossSellingModel(
         text = text
     )
 }

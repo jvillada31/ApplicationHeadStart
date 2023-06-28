@@ -40,8 +40,8 @@ fun ResultScreen(
         )
 
         HeaderSection(
-            title = uiState.myScreenModel?.header?.title ?: "Default title",
-            iconUrl = uiState.myScreenModel?.header?.iconUrl,
+            title = uiState.myScreenModel?.headerModel?.title ?: "Default title",
+            iconUrl = uiState.myScreenModel?.headerModel?.iconUrl,
             modifier = modifier.constrainAs(header) {
                 top.linkTo(type.bottom, margin = 16.dp)
                 start.linkTo(parent.start)
@@ -61,7 +61,7 @@ fun ResultScreen(
         )
 
         FooterSection(
-            buttonList = uiState.myScreenModel?.footer?.buttonList,
+            buttonModelList = uiState.myScreenModel?.footerModel?.buttonModelList,
             modifier = modifier.constrainAs(footer) {
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)

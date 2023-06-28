@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface MyScreenApi {
 
-    @GET("8f7883cd-ffe6-46ec-9e21-9b183e3aa1ce")
+    @GET("7499db13-295d-426f-a34d-b31240859e3e")
     suspend fun getMyScreen(): Response<MyScreenResponse>
 }

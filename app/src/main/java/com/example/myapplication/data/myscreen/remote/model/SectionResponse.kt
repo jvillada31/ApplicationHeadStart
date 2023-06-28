@@ -1,16 +1,18 @@
 package com.example.myapplication.data.myscreen.remote.model
 
-import com.example.myapplication.domain.myscreen.model.BodyRow
+import com.example.myapplication.domain.myscreen.model.BodyRowModel
 import com.example.myapplication.domain.myscreen.model.BodyRowType
-import com.example.myapplication.domain.myscreen.model.Section
+import com.example.myapplication.domain.myscreen.model.SectionModel
 
 data class SectionResponse(
-    val sectionTitle: String
+    val sectionTitle: String,
+    val bodyRow: List<BodyRowResponse>
 ) : BodyRowResponse {
 
     override val type: BodyRowType = BodyRowType.SECTION
 
-    override fun mapToDomain(): BodyRow = Section(
-        sectionTitle = sectionTitle
+    override fun mapToDomain(): BodyRowModel = SectionModel(
+        sectionTitle = sectionTitle,
+        bodyRowModel = bodyRow.map { it.mapToDomain() }
     )
 }
