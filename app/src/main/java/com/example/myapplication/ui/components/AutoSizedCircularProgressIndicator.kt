@@ -47,7 +47,7 @@ private val InternalPadding = 4.dp
 
 private val StrokeDiameterFraction = DefaultStrokeWidth / DefaultDiameter
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun PreviewAutoSizedCircularProgressIndicator() {
     Surface {
