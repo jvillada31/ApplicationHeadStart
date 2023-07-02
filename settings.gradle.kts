@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ApplicationHeadStart"
+rootProject.name = "Android Template"
 include(":app")
 include(":uicomponents")
