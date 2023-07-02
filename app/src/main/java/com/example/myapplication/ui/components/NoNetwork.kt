@@ -70,7 +70,6 @@ fun NoNetwork(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = true)
 @Composable
 fun NoNetworkPreview() {

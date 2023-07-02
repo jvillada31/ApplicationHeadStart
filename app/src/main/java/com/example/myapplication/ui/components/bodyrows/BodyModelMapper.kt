@@ -16,6 +16,7 @@ import com.example.myapplication.domain.myscreen.model.CrossSellingModel
 import com.example.myapplication.domain.myscreen.model.MessageModel
 import com.example.myapplication.domain.myscreen.model.PaymentMethodInfoModel
 import com.example.myapplication.domain.myscreen.model.SectionModel
+import com.example.uicomponents.bodyrows.PaymentMethodInfo
 import timber.log.Timber
 
 @Composable
@@ -46,7 +47,13 @@ fun SectionModelMapper(
                         textAlign = TextAlign.Center
                     )
 
-                is PaymentMethodInfoModel -> PaymentMethodInfo(model)
+                is PaymentMethodInfoModel -> PaymentMethodInfo(
+                    imageUrl = "",
+                    amountPaid = 100.0,
+                    discount = "50% OFF",
+                    rawAmount = 100.0,
+                    methodType = model.methodType
+                )
 
                 is SectionModel -> Timber.d("no-op")
             }
@@ -93,7 +100,13 @@ fun BodyModelMapper(
                 }
 
                 is PaymentMethodInfoModel -> item {
-                    PaymentMethodInfo(model)
+                    PaymentMethodInfo(
+                        imageUrl = "",
+                        amountPaid = 100.0,
+                        discount = "50% OFF",
+                        rawAmount = 100.0,
+                        methodType = model.methodType
+                    )
                 }
             }
         }

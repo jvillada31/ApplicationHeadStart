@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "ApplicationHeadStart"
 include(":app")
- 
+include(":uicomponents")
