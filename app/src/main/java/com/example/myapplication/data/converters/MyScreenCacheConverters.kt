@@ -8,7 +8,7 @@ import com.example.myapplication.domain.myscreen.model.CrossSellingModel
 import com.example.myapplication.domain.myscreen.model.MessageModel
 import com.example.myapplication.domain.myscreen.model.PaymentMethodInfoModel
 import com.example.myapplication.domain.myscreen.model.ScreenType
-import com.example.myapplication.domain.myscreen.model.SectionModel
+import com.example.myapplication.domain.myscreen.model.NestedBodyModel
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
@@ -39,7 +39,7 @@ class MyScreenCacheConverters {
                     .withSubtype(CrossSellingModel::class.java, BodyRowType.CROSS_SELLING.name)
                     .withSubtype(MessageModel::class.java, BodyRowType.MESSAGE.name)
                     .withSubtype(PaymentMethodInfoModel::class.java, BodyRowType.PAYMENT_METHOD_INFO.name)
-                    .withSubtype(SectionModel::class.java, BodyRowType.SECTION.name)
+                    .withSubtype(NestedBodyModel::class.java, BodyRowType.SECTION.name)
             )
             .add(KotlinJsonAdapterFactory())
             .build()

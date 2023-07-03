@@ -10,7 +10,7 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.myapplication.ui.sections.BodySection
+import com.example.myapplication.ui.sections.body.BodySection
 import com.example.myapplication.ui.sections.FooterSection
 import com.example.myapplication.ui.sections.HeaderSection
 

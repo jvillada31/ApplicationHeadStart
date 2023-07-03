@@ -1,4 +1,4 @@
-package com.example.uicomponents.bodyrows
+package com.example.uicomponents.payments
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text

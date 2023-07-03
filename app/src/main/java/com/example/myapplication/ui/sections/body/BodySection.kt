@@ -1,9 +1,8 @@
-package com.example.myapplication.ui.sections
+package com.example.myapplication.ui.sections.body
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.myapplication.domain.myscreen.model.BodyRowModel
-import com.example.myapplication.ui.components.bodyrows.BodyModelMapper
 
 @Composable
 fun BodySection(

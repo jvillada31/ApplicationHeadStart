@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.components.bodyrows
+package com.example.myapplication.ui.sections.body
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,8 +15,8 @@ import com.example.myapplication.domain.myscreen.model.BodyRowModel
 import com.example.myapplication.domain.myscreen.model.CrossSellingModel
 import com.example.myapplication.domain.myscreen.model.MessageModel
 import com.example.myapplication.domain.myscreen.model.PaymentMethodInfoModel
-import com.example.myapplication.domain.myscreen.model.SectionModel
-import com.example.uicomponents.bodyrows.PaymentMethodInfo
+import com.example.myapplication.domain.myscreen.model.NestedBodyModel
+import com.example.uicomponents.payments.PaymentMethodInfo
 import timber.log.Timber
 
 @Composable
@@ -50,8 +50,8 @@ fun BodyModelMapper(
                     )
                 }
 
-                is SectionModel -> item {
-                    Section(
+                is NestedBodyModel -> item {
+                    NestedBodySection(
                         section = model,
                         modifier = modifier
                     )
@@ -72,7 +72,7 @@ fun BodyModelMapper(
 }
 
 @Composable
-fun SectionModelMapper(
+fun NestedBodyModelMapper(
     bodyRowModel: List<BodyRowModel>,
     modifier: Modifier = Modifier
 ) {
@@ -107,7 +107,7 @@ fun SectionModelMapper(
                     methodType = model.methodType
                 )
 
-                is SectionModel -> Timber.d("no-op")
+                is NestedBodyModel -> Timber.d("no-op")
             }
         }
     }

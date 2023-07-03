@@ -4,7 +4,7 @@ import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class SectionModel(
+data class NestedBodyModel(
     val sectionTitle: String,
     val bodyRowModel: List<BodyRowModel>
 ) : BodyRowModel {

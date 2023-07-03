@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.components.bodyrows
+package com.example.myapplication.ui.sections.body
 
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,11 +15,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.myapplication.domain.myscreen.model.SectionModel
+import com.example.myapplication.domain.myscreen.model.NestedBodyModel
 
 @Composable
-fun Section(
-    section: SectionModel,
+fun NestedBodySection(
+    section: NestedBodyModel,
     modifier: Modifier = Modifier
 ) {
     Card(
@@ -44,6 +44,6 @@ fun Section(
             color = Color.LightGray.copy(alpha = 0.6f)
         )
 
-        SectionModelMapper(bodyRowModel = section.bodyRowModel)
+        NestedBodyModelMapper(bodyRowModel = section.bodyRowModel)
     }
 }
