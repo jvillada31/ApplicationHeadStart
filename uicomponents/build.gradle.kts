@@ -53,6 +53,9 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
 
+    // Logging
+    implementation("com.jakewharton.timber:timber:5.0.1")
+
     // Media
     implementation("com.google.accompanist:accompanist-placeholder-material:0.13.0")
     implementation("io.coil-kt:coil-compose:2.4.0")

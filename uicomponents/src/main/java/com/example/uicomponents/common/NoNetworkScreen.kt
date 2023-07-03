@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.components
+package com.example.uicomponents.common
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -22,13 +22,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.myapplication.R
-import com.example.myapplication.ui.theme.MyApplicationTheme
+import com.example.uicomponents.R
 import kotlinx.coroutines.launch
 
 @Composable
-fun NoNetwork(
-    modifier: Modifier,
+fun NoNetworkScreen(
+    modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
     Box(
@@ -72,20 +71,18 @@ fun NoNetwork(
 @Preview(showBackground = true)
 @Composable
 fun NoNetworkPreview() {
-    MyApplicationTheme {
-        val snackbarHostState = remember { SnackbarHostState() }
-        val scope = rememberCoroutineScope()
+    val snackbarHostState = remember { SnackbarHostState() }
+    val scope = rememberCoroutineScope()
 
-        Scaffold(
-            snackbarHost = { SnackbarHost(snackbarHostState) },
-            modifier = Modifier.fillMaxSize(),
-        ) { padding ->
-            NoNetwork(Modifier.padding(padding)) {
-                scope.launch {
-                    snackbarHostState.showSnackbar(
-                        "Try again clicked"
-                    )
-                }
+    Scaffold(
+        snackbarHost = { SnackbarHost(snackbarHostState) },
+        modifier = Modifier.fillMaxSize(),
+    ) { padding ->
+        NoNetworkScreen(Modifier.padding(padding)) {
+            scope.launch {
+                snackbarHostState.showSnackbar(
+                    "Try again clicked"
+                )
             }
         }
     }

@@ -10,7 +10,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.myapplication.ui.components.NoNetwork
+import com.example.uicomponents.common.NoNetworkScreen
 import kotlinx.coroutines.launch
 
 @Composable
@@ -32,7 +32,7 @@ fun FetchScreen(
     }
 
     if (uiState.noNetwork) {
-        NoNetwork(modifier) {
+        NoNetworkScreen(modifier) {
             fetchViewModel.getMyScreen(false)
         }
     } else {

@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.components
+package com.example.uicomponents.common
 
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
