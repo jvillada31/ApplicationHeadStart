@@ -20,48 +20,6 @@ import com.example.uicomponents.bodyrows.PaymentMethodInfo
 import timber.log.Timber
 
 @Composable
-fun SectionModelMapper(
-    bodyRowModel: List<BodyRowModel>,
-    modifier: Modifier = Modifier
-) {
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        bodyRowModel.map { model ->
-            when (model) {
-                is CrossSellingModel ->
-                    // CrossSelling(...)
-                    Text(
-                        text = model.text,
-                        color = Color.Black.copy(alpha = 0.9f),
-                        textAlign = TextAlign.Center
-                    )
-
-                is MessageModel ->
-                    // Message(...)
-                    Text(
-                        text = model.text,
-                        color = Color.Black.copy(alpha = 0.9f),
-                        textAlign = TextAlign.Center
-                    )
-
-                is PaymentMethodInfoModel -> PaymentMethodInfo(
-                    imageUrl = "",
-                    amountPaid = 100.0,
-                    discount = "50% OFF",
-                    rawAmount = 100.0,
-                    methodType = model.methodType
-                )
-
-                is SectionModel -> Timber.d("no-op")
-            }
-        }
-    }
-}
-
-@Composable
 fun BodyModelMapper(
     bodyRowModel: List<BodyRowModel>,
     modifier: Modifier = Modifier
@@ -108,6 +66,48 @@ fun BodyModelMapper(
                         methodType = model.methodType
                     )
                 }
+            }
+        }
+    }
+}
+
+@Composable
+fun SectionModelMapper(
+    bodyRowModel: List<BodyRowModel>,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        bodyRowModel.map { model ->
+            when (model) {
+                is CrossSellingModel ->
+                    // CrossSelling(...)
+                    Text(
+                        text = model.text,
+                        color = Color.Black.copy(alpha = 0.9f),
+                        textAlign = TextAlign.Center
+                    )
+
+                is MessageModel ->
+                    // Message(...)
+                    Text(
+                        text = model.text,
+                        color = Color.Black.copy(alpha = 0.9f),
+                        textAlign = TextAlign.Center
+                    )
+
+                is PaymentMethodInfoModel -> PaymentMethodInfo(
+                    imageUrl = "",
+                    amountPaid = 100.0,
+                    discount = "50% OFF",
+                    rawAmount = 100.0,
+                    methodType = model.methodType
+                )
+
+                is SectionModel -> Timber.d("no-op")
             }
         }
     }
