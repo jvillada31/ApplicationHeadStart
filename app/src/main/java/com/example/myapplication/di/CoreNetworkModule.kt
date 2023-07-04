@@ -16,12 +16,14 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import java.util.concurrent.TimeUnit
-import javax.inject.Singleton
+
+const val OK_HTTP_CLIENT_TIMEOUT_DEFAULTS = 15_000L
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -31,12 +33,14 @@ object CoreNetworkModule {
     @Provides
     fun providesMoshi(): Moshi = Moshi.Builder()
         .add(
-            ScreenType::class.java, EnumJsonAdapter.create(ScreenType::class.java)
-                .withUnknownFallback(ScreenType.PROCESSING)
+            ScreenType::class.java,
+            EnumJsonAdapter.create(ScreenType::class.java).withUnknownFallback(
+                ScreenType.PROCESSING
+            )
         )
         .add(
-            BodyRowType::class.java, EnumJsonAdapter.create(BodyRowType::class.java)
-                .withUnknownFallback(null)
+            BodyRowType::class.java,
+            EnumJsonAdapter.create(BodyRowType::class.java).withUnknownFallback(null)
         )
         .add(
             PolymorphicJsonAdapterFactory.of(
@@ -76,16 +80,16 @@ object CoreNetworkModule {
     internal fun providesOkHttpClientBuilder(
         loggingInterceptor: HttpLoggingInterceptor?
     ): OkHttpClient.Builder = OkHttpClient.Builder().apply {
-        connectTimeout(15_000L, TimeUnit.MILLISECONDS)
-        readTimeout(15_000L, TimeUnit.MILLISECONDS)
-        writeTimeout(15_000L, TimeUnit.MILLISECONDS)
+        connectTimeout(OK_HTTP_CLIENT_TIMEOUT_DEFAULTS, TimeUnit.MILLISECONDS)
+        readTimeout(OK_HTTP_CLIENT_TIMEOUT_DEFAULTS, TimeUnit.MILLISECONDS)
+        writeTimeout(OK_HTTP_CLIENT_TIMEOUT_DEFAULTS, TimeUnit.MILLISECONDS)
         loggingInterceptor?.also { addInterceptor(it) }
     }
 
     @Singleton
     @Provides
     internal fun providesOkHttpClient(
-        builder: OkHttpClient.Builder,
+        builder: OkHttpClient.Builder
     ): OkHttpClient = with(builder) {
         build()
     }
