@@ -32,7 +32,7 @@ fun PaymentMethodInfo(
 fun PaymentMethodInfoPreview() {
     PaymentMethodInfo(
         imageUrl = "",
-        amountPaid = 100.0,
+        amountPaid = 150.0,
         discount = "50% OFF",
         rawAmount = 100.0,
         methodType = "Dinheiro em conta Mercado Pago"
