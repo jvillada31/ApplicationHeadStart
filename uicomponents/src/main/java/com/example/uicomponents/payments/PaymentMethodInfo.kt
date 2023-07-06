@@ -1,5 +1,7 @@
 package com.example.uicomponents.payments
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -11,6 +13,7 @@ import androidx.compose.ui.unit.dp
 
 @Suppress("UnusedPrivateMember", "LongParameterList")
 @Composable
+// XML or CustomView
 fun PaymentMethodInfo(
     imageUrl: String,
     amountPaid: Double,
@@ -19,12 +22,20 @@ fun PaymentMethodInfo(
     modifier: Modifier = Modifier,
     discount: String? = null
 ) {
-    Text(
-        text = methodType,
-        modifier = Modifier.padding(start = 16.dp, top = 16.dp),
-        color = Color.Black.copy(alpha = 0.9f),
-        textAlign = TextAlign.Center
-    )
+    Column(Modifier.background(Color.White)) {
+        Text(
+            text = methodType,
+            modifier = Modifier.padding(start = 16.dp, top = 16.dp),
+            color = Color.Black.copy(alpha = 0.9f),
+            textAlign = TextAlign.Center
+        )
+        Text(
+            text = methodType,
+            modifier = Modifier.padding(start = 16.dp, top = 16.dp),
+            color = Color.Black.copy(alpha = 0.9f),
+            textAlign = TextAlign.Center
+        )
+    }
 }
 
 @Preview(showBackground = true)
